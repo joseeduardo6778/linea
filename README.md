@@ -16,7 +16,7 @@ Flask
 MongoDB (u otra base de datos de preferencia)
 Paquetes Python: Flask, PyMongo, Flask-WTF, Flask-Login, etc.
 
-#Instalación
+# Instalación
 1. Clona este repositorio en tu máquina local.
 https://github.com/joseeduardo6778/linea.githttps://github.com/joseeduardo6778/linea.git
 2. Crea un entorno virtual e instala las dependencias.
@@ -31,14 +31,14 @@ pip install -r requirements.txt
 5. En el navegador coloca el siguiente http://localhost:5000
 
 
-#Uso
+# Uso
 Regístrate e inicia sesión en la plataforma.
 Crea un nuevo proyecto.
 Invita a miembros del equipo al proyecto.
 Agrega tareas, establece plazos y comenta sobre el progreso del proyecto.
 Gestiona tus proyectos de manera efectiva.
 
-#Contribución
+# Contribución
 Si deseas contribuir al desarrollo de este proyecto, sigue estos pasos:
 Realiza un fork del repositorio.
 Crea una nueva rama para tu característica: git checkout -b feature/nueva-caracteristica.
@@ -47,10 +47,10 @@ Haz un commit de tus cambios: git commit -m 'Añadida nueva característica'.
 Sube tus cambios a tu fork: git push origin feature/nueva-caracteristica.
 Envía un Pull Request a este repositorio.
 
-#Licencia
+# Licencia
 Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para obtener más detalles.
 
-#Contacto
+# Contacto
 joseeduardo678
 Correo Electrónico: joseph.rojasc617@gmail.com
 
