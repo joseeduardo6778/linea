@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Tareas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css')}}">
+</head>
+
+<body>
+    <h1> Agregar tarea </h1>
+    <form action="/agregar_tarea" method="post">
+        <img src="{{ url_for('static', filename='img/Escudo.png') }}" alt="Imagen de inicio de sesión">
+        <input type="text" name="nombre_tarea" placeholder="Digita el nombre de la tarea">
+        <input type="text" name="descripcion" placeholder="Digite la descripcion">
+        <label for="fechaVencimiento">Fecha de vencimiento:</label><br>
+        <input type="date" name="fecha_vencimiento" placeholder="Digite la fecha de vencimiento">
+        <label for="">Selecciona que quieres buscar: </label>
+        <br>
+        <select name="estado" class="form-select">
+            <option value="cumplido">Cumplido</option>
+            <option value="incumplido">Incumplido</option>
+            <option value="indefinido">Indefinido</option>
+        </select>
+        <br>
+        <input type="text" name="tiempo_dedicado" placeholder="Digite el tiempo dedicado">
+        <button type="submit">Agregar tarea</button>
+    </form>
+</body>
+
+</html>

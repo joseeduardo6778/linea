@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar comentario</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css')}}">
+</head>
+<body>
+    <h1> Agregar comentario </h1>
+
+    {% for comment in comments %}
+    <div class="comment">
+        <p>{{ comment.nombre_usuario }} - {{ comment.fecha }}</p>
+        <p>{{ comment.nombre_proyecto }}</p>
+        <p>{{ comment.comentario }}</p>
+        <a href="/editar_comentario/{{ comment._id }}">Editar</a>
+        <a href="/eliminar_comentario/{{ comment._id }}">Eliminar</a>
+    </div>
+    {% endfor %}
+
+    <form action="/agregar_comentario" method="post">
+        <p>Bienvenido, {{ nombreUsuario }}.</p>
+        <img src="{{ url_for('static', filename='img/Escudo.png') }}" alt="Imagen de inicio de sesión">
+        <input type="text" name="nombre_usuario" readonly onmousedown="return false;" value="{{ nombreUsuario }}">
+        <input type="text" name="nombre_proyecto" placeholder="Digite el nombre de proyecto">
+        <input type="text" name="comentario" placeholder="Digite el comentario">
+        <button type="submit">Agregar comentario</button>
+        
+       
+        
+    </form>
+        
+
+    
+
+    
+</body>
+</html>

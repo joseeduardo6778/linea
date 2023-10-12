@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creacion de proyectos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css')}}">
+</head>
+<body>
+    <form action="/crear_proyecto" method="post">
+        <img src="{{ url_for('static', filename='img/Escudo.png') }}" alt="Imagen de inicio de sesión">
+        <h3>Nombre de usuario</h3>
+        <input type="text" placeholder="Ingrese el nombre de proyecto" name="nombreProyecto">
+        
+        <h3>Descripción</h3>
+        <input type="text" placeholder="Ingrese una descripción" name="descripcion">
+        <label for="fechaInicio">Fecha de inicio:</label>
+        <input type="date" name="fecha_inicio" class="input-field">
+        <label for="fechaFinalizacion">Fecha de finalizacion:</label>
+        <input type="date" name="fecha_final" class="input-field"><br>
+        <label for="miembros_equipo">Miembros del Equipo:</label><br>
+        {% for usuarios in usuario %}
+        <input type="checkbox" id="miembro1" name="miembros_equipo[]" value="{{ usuarios.nombre_usuario }}"> <label
+            for="miembro1">{{ usuarios.nombre_usuario }}</label><br>
+        {% endfor %}
+        <label for="listaTareas">Lista de tareas:</label><br>
+        {% for tareas in tarea %}
+        <input type="checkbox" id="tarea1" name="tareas[]" value="{{ tareas.nombre_tarea }}"> <label for="miembro1">{{
+            tareas.nombre_tarea }}</label><br>
+        {% endfor %}
+        <button type="submit">Guardar</button>
+        
+    </form>
+       
+
+    
+</body>
+</html>

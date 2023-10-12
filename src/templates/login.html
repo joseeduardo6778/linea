@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+</head>
+
+<body class="body-animation">
+    <h1>Login</h1>
+
+    <form action="/iniciar" method="post">
+        <img src="{{ url_for('static', filename='img/Escudo.png') }}" alt="Imagen de inicio de sesión">
+
+        <h3>Nombre de usuario</h3>
+        <input type="text" placeholder="Ingrese su nombre de usuario" name="nombre">
+
+        <h3>Cargo</h3>
+        <input type="password" placeholder="Ingrese su contraseña" name="password">
+
+        <br>
+
+        <button type="submit">Ingresar</button>
+       
+        
+    </form>
+    <br>
+    <form>
+        <h3>¿No se encuentra registrado aún?</h3>
+        <h4>De click al siguiente botón para registrarse</h4>
+        <a href="/registrar"><button type="button">Registrar</button></a>
+    </form>
+    <!-- Agregar un botón de registro -->
+    
+    
+
+</body>
+
+</html>

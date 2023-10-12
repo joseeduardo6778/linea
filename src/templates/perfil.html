@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <title>Crear perfiles de usuarios</title>
+
+
+</head>
+<body>
+    <form action="/crear_perfil" method="post">
+        <h2>Crea Un Nuevo Perfil</h2>
+        <input type="text" name="nombre_usuario" placeholder="Digita tu nombre" class="input-field">
+
+
+        <label for="cargo1">Selecciona que quieres buscar: </label>
+        <br>
+        <select name="cargo" class="form-select">
+            <option value="Director" class="director-option">Director</option>
+            <option value="Programador" class="optionD">Programador</option>
+            <option value="Administrador de proyecto" class="optionD">Administrador de proyecto</option>
+            <option value="Analista" class="optionD">Analista</option>
+            <option value="Diseñador" class="optionD">Diseñador</option>
+            <option value="Tester" class="optionD">Tester</option>
+            <option value="Calidad del producto" class="optionD">Calidad de producto</option>
+            <option value="Documentador" class="optionD">Documentador</option>
+        </select>
+        <br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Programacion"> <label for="habilidad1">Programacion</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Resolucion de problemas"> <label for="habilidad1">Resolucion de problemas</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Comunicacion"> <label for="habilidad1">Comunicacion</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Colaboracion"> <label for="habilidad1">Colaboracion</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Pruebas"> <label for="habilidad1">Pruebas</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Diseño"> <label for="habilidad1">Diseño</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Documentacion"> <label for="habilidad1">Documentacion</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Base de datos"> <label for="habilidad1">Base de datos</label><br>
+        <input type="checkbox" id="habilidad1" name="habilidades[]" value="Requerimientos"> <label for="habilidad1">Requerimientos</label><br>
+        
+        
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

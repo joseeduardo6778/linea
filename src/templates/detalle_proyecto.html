@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Proyecto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style5.css')}}">
+
+
+    <style>
+        .coment {
+            text-decoration: none;
+            display: inline-block;
+            background-color: #00cc03;
+            color: #1a8e14;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+
+        .coment:hover {
+            background-color: #048424;
+
+        }
+
+        .coment button {
+            border: none;
+            background: none;
+            color: inherit;
+            cursor: pointer;
+            outline: none;
+            color: #ffff;
+        }
+
+        .button-eliminar {
+            background-color: rgb(255, 255, 255);
+            color: #ffff;
+            padding: 10px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(1, 70, 14, 0.419);
+
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtiene los elementos del enlace/botón y el formulario
+            var mostrarFormulario = document.getElementById("mostrarFormulario");
+            var formularioComentario = document.getElementById("formularioComentario");
+
+            //Agrega un evento de clic al enlace/botón para mostrar/ocultar el formulario
+            mostrarFormulario.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (formularioComentario.style.display === "none") {
+                    formularioComentario.style.display = "block";
+                } else {
+                    formularioComentario.style.display = "none";
+                }
+            });
+        });
+        function editarComentario(comentarioId) {
+            var comentarioElement = document.getElementById("comentario" + comentarioId);
+            var formularioElement = document.getElementById("formulario" + comentarioId);
+
+            comentarioElement.style.display = "none";
+            formularioElement.style.display = "block";
+        }
+
+        function guardarComentario(comentarioId) {
+            var comentarioElement = document.getElementById("comentario" + comentarioId);
+            var nuevoComentarioElement = document.getElementById("nuevoComentario" + comentarioId);
+            var formularioElement = document.getElementById("formulario" + comentarioId);
+
+            // Actualiza el contenido del comentario con el nuevo texto
+            comentarioElement.innerText = nuevoComentarioElement.value;
+
+            // Oculta el formulario de edición
+            formularioElement.style.display = "none";
+            comentarioElement.style.display = "block";
+
+            // Aquí puedes enviar el nuevo comentario al servidor si es necesario
+        }
+
+        function cancelarEdicion(comentarioId) {
+            var comentarioElement = document.getElementById("comentario" + comentarioId);
+            var formularioElement = document.getElementById("formulario" + comentarioId);
+
+            // Vuelve a mostrar el comentario original y oculta el formulario
+            formularioElement.style.display = "none";
+            comentarioElement.style.display = "block";
+        }
+        function editarDetallesProyecto() {
+            var formularioDetallesProyecto = document.getElementById("formularioDetallesProyecto");
+            formularioDetallesProyecto.style.display = "block";
+        }
+
+        function cancelarEdicionDetallesProyecto() {
+            var formularioDetallesProyecto = document.getElementById("formularioDetallesProyecto");
+            formularioDetallesProyecto.style.display = "none";
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <h1>Detalles del Proyecto</h1>
+    <div class="project-card">
+        <h2>{{ proyecto.nombreProyecto }}</h2>
+        <p>Descripción: {{ proyecto.descripcion }}</p>
+        <p>Fecha de Inicio: {{ proyecto.fecha_inicio }}</p>
+        <p>Fecha de Finalización: {{ proyecto.fecha_final }}</p>
+        <h3>Miembros del Equipo:</h3>
+        <ul>
+            {% for miembro in proyecto.miembros_equipo %}
+            <li>{{ miembro }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Lista de Tareas:</h3>
+        <ul>
+            {% for tarea in proyecto.tareas %}
+            <li>{{ tarea }}</li>
+            {% endfor %}
+        </ul>
+        
+
+        <button class="button-editar" onclick="editarDetallesProyecto()" href="/editar_proyecto/{{ proyecto._id }}">Editar Detalles del Proyecto</button>
+
+        <form id="formularioDetallesProyecto" style="display: none;" method="post" action="/editar_proyecto/{{ proyecto._id }}">
+            <input type="text" name="nombreProyecto" value="{{ proyecto.nombreProyecto }}">
+            <textarea name="descripcion" rows="4" cols="50">{{ proyecto.descripcion }}</textarea>
+            <input type="date" name="fecha_inicio" value="{{ proyecto.fecha_inicio }}">
+            <input type="date" name="fecha_final" value="{{ proyecto.fecha_final }}">
+            <!-- Agrega campos para editar otros detalles del proyecto según sea necesario -->
+            <button class="button-guardar" type="submit">Guardar</button>
+            <button class="button-cancelar" onclick="cancelarEdicionDetallesProyecto()">Cancelar</button>
+        </form>
+    </div>
+
+
+    <h3>Comentarios:</h3>
+<ul>
+    {% for comentario in comentarios %}
+    <li>
+        <strong>{{ comentario.nombre_usuario }}</strong> ({{ comentario.fecha }}):<br>
+        <span id="comentario{{ comentario._id }}">{{ comentario.comentario }}</span>
+        <button class="button-editar" onclick="editarComentario('{{ comentario._id }}')">Editar</button>
+        <button class="button-eliminar"><a href="{{ url_for('eliminar', id_comentario=comentario._id )}}"
+                onclick="return confirm('¿Está seguro de que desea eliminar este comentario?')">Eliminar</a></button>
+
+        <form id="formulario{{ comentario._id }}" style="display: none;" method="post"
+            action="/editar_comentario/{{ comentario._id }}">
+            <textarea id="nuevoComentario{{ comentario._id }}" name="nuevo_comentario" rows="4"
+                cols="50">{{ comentario.comentario }}</textarea>
+            <button class="button-guardar" type="submit">Guardar</button>
+            <button class="button-cancelar" onclick="cancelarEdicion('{{ comentario._id }}')">Cancelar</button>
+        </form>
+
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+    <a href="/comentario/{{nombre_usuario}}" class="coment"><button>Agregar comentario</button></a>
+    <br>
+    <br>
+    <a href="{{ url_for('listaProyectos') }}">Volver a la Lista de Proyectos</a>
+    <br>
+
+    </div>
+
+
+</body>
+
+
+</html>

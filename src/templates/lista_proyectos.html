@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Proyectos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style5.css')}}">
+    <style>
+        /* Agregar estilos CSS personalizados aquí */
+       /* Establecer un tamaño fijo para cada tarjeta */
+        .project-card {
+            width: 300px; 
+            margin-right: 20px; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            transition: background-color 0.3s; 
+        }
+
+        /* Agregar estilos CSS personalizados aquí */
+        .project-list {
+            display: flex;
+            flex-wrap: nowrap; 
+            overflow-x: auto;
+            list-style-type: none; 
+            padding: 0;
+        }
+
+        
+        .project-card:hover {
+            background-color: #f0f0f0;
+        }
+
+        .price__cta {
+        color: rgb(27, 169, 14);
+        text-decoration: underline;
+        text-decoration: underline;
+        text-align: center; 
+        line-height: 2; 
+        display: block; 
+        }
+
+         
+        .scroll-button {
+            background-color: #05bc1d;
+            height: 60px;
+            width: 60px;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 0 30px rgba(14, 189, 40, 0.652);
+            border: 5px solid #ffffff74;
+        }
+
+        .scroll-button:hover {
+            background-color: #009905;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de Proyectos</h1>
+   
+
+    <div class="project-container"></div>
+    <button class="scroll-button" id="moveLeft">←</button>
+        <ul class="project-list">
+            {% for proyecto in proyectos %}
+            <li class="project-card">
+                <h2>{{ proyecto.nombreProyecto }}</h2>
+                <p>{{ proyecto.descripcion }}</p>
+            
+                <div class="price__items">
+                
+                </div>
+
+                <a href="{{ url_for('eliminar_proyecto', id_proyecto=proyecto._id )}}"
+                    onclick="return confirm('¿Esta seguro que desea eliminar este documento?')">Eliminar</a>
+                <a href="{{ url_for('detalle_proyecto', proyecto_id=proyecto._id) }}" class="price__cta">Más información</a>
+                <br>
+                
+            </li>
+            {% endfor %}
+        </ul>
+        <button class="scroll-button" id="moveRight">→</button>
+        <button 
+    </div>
+    
+
+
+    <script>
+        const projectContainer = document.querySelector('.project-container');
+        const projectList = document.querySelector('.project-list');
+        const moveLeft = document.getElementById('moveLeft');
+        const moveRight = document.getElementById('moveRight');
+
+        // Inicializar el valor de desplazamiento
+        let scrollPosition = 0;
+
+        // Función para mover las tarjetas hacia la izquierda
+        function moveCardsLeft() {
+            scrollPosition -= 100; // Puedes ajustar el valor según tu preferencia
+            if (scrollPosition < 0) scrollPosition = 0;
+            projectList.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+
+        // Función para mover las tarjetas hacia la derecha
+        function moveCardsRight() {
+            scrollPosition += 100; // Puedes ajustar el valor según tu preferencia
+            projectList.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+
+        // Agregar eventos a los botones
+        moveLeft.addEventListener('click', moveCardsLeft);
+        moveRight.addEventListener('click', moveCardsRight);
+    </script>
+</body>
+
+</html>

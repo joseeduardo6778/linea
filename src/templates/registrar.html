@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css')}}">
+</head>
+
+<body class="body-animation">
+    <h1>Registro</h1>
+
+
+
+
+    <form action="/registro" method="post">
+        <img src="{{ url_for('static', filename='img/Escudo.png') }}" alt="Imagen de inicio de sesión">
+
+        <h3>Nombre de usuario</h3>
+        <input type="text" placeholder="Ingrese su nombre de usuario" name="nombre">
+
+        <h3>Edad</h3>
+        <input type="text" name="edad" placeholder="Digite la edad">
+
+        <h3>Teléfono</h3>
+        <input type="text" name="telefono" placeholder="Digite el telefono">
+
+
+        <h3>Contraseña</h3>
+        <input type="password" placeholder="Ingrese su contraseña" name="password">
+
+
+        <br>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+</body>
+
+</html>
